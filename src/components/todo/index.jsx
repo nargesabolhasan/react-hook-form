@@ -9,7 +9,7 @@ const TodoList = () => {
   const { darkStyles } = useContext(ThemeContext);
 
   const addTodo = (todo) => {
-    setTodos((prevTodos) => [...prevTodos, { id: Date.now(), text: todo }]);
+    setTodos((prevTodos) => [{ id: Date.now(), text: todo }, ...prevTodos]);
   };
 
   const editTodo = (id, newText) => {
