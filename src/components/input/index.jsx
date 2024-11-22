@@ -1,6 +1,7 @@
+import PropTypes from "prop-types";
 import React from "react";
 
-const index = ({ error, message, label, register, type }) => {
+const MyInput = ({ error, message, label, register, type }) => {
   return (
     <div className="mb-4">
       <label className="block text-sm font-medium text-gray-700">{label}</label>
@@ -16,4 +17,11 @@ const index = ({ error, message, label, register, type }) => {
   );
 };
 
-export default index;
+MyInput.propTypes = {
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
+  error: PropTypes.bool.isRequired,
+  type: PropTypes.oneOf(["text", "textarea", "checkbox", "radio", "number"]),
+};
+export default MyInput;
