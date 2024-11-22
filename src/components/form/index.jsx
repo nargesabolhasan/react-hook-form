@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import MyInput from "../input";
-import { Description } from "@mui/icons-material";
+import { USER_URL } from "../urls";
 
 const MyForm = () => {
   const schema = yup.object().shape({
@@ -31,9 +31,10 @@ const MyForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     resolver: yupResolver(schema),
+    mode: "onChange",
   });
 
   const inputs = [
@@ -70,7 +71,10 @@ const MyForm = () => {
   ];
 
   const onSubmit = (data) => {
-    console.log(data);
+    fetch(USER_URL, {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
   };
 
   return (
@@ -88,7 +92,8 @@ const MyForm = () => {
         ))}
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 disabled:bg-gray-500"
+          disabled={!isValid}
         >
           Submit
         </button>

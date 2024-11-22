@@ -20,7 +20,7 @@ const MyInput = ({ error, label, register, type }) => {
 MyInput.propTypes = {
   label: PropTypes.string.isRequired,
   register: PropTypes.object,
-  error: PropTypes.string.isRequired,
+  error: PropTypes.string,
   type: PropTypes.oneOf(["text", "textarea", "checkbox", "radio", "number"]),
 };
 export default MyInput;
